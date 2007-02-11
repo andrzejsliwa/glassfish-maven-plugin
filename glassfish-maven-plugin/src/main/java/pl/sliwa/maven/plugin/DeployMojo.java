@@ -19,8 +19,8 @@ public class DeployMojo extends AbstractGlassfishMojo {
 		String fileNamePath = buildDir + File.separator + fileName;
 		String params = "deploy --user " + user + " --passwordfile " + passwordfile + " " + fileNamePath;
 		
-		System.out.println("Glassfish home = " +glassfishHome);
-		System.out.println("Params =" + params);
+		getLog().info("Glassfish home = " +glassfishHome);
+		getLog().info("Params =" + params);
 		
 		launch("asadmin", params);
 	}

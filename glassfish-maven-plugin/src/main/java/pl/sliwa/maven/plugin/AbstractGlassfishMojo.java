@@ -122,7 +122,9 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 				    String line = "";
 				    String ln;
 				    while ((ln = br.readLine()) != null) {
-				    	 line += ln;				         
+				    	 line += ln;
+				    	 getLog().info(ln);
+
 				    }
 				    if (line.contains("failed")) throw new MojoFailureException(line); 
 	
@@ -140,7 +142,8 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 			    String line = "";
 			    String ln;
 			    while ((ln = br.readLine()) != null) {
-			    	 line += ln;				         
+			    	 line += ln;
+			    	 getLog().info(ln);
 			    }
 			    if (line.contains("failed")) throw new MojoFailureException(line);
 			}

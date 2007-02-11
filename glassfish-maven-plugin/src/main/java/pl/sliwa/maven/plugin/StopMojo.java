@@ -15,8 +15,8 @@ public class StopMojo extends AbstractGlassfishMojo{
 		
 		String params = "stop-domain " + domain;
 		
-		System.out.println("Glassfish home = " +glassfishHome);
-		System.out.println("Params =" + params);
+		getLog().info("Glassfish home = " +glassfishHome);
+		getLog().info("Params =" + params);
 		
 		launch("asadmin", params);
 	}

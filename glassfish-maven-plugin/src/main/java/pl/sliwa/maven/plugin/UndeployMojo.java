@@ -18,8 +18,8 @@ public class UndeployMojo extends AbstractGlassfishMojo {
 		
 		String params = "undeploy --user " + user + " --passwordfile " + passwordfile + " " + undeployName;
 		
-		System.out.println("Glassfish home = " +glassfishHome);
-		System.out.println("Params =" + params);
+		getLog().info("Glassfish home = " +glassfishHome);
+		getLog().info("Params =" + params);
 		
 		launch("asadmin", params);
 	}

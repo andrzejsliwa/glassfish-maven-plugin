@@ -15,8 +15,8 @@ public class StopDatabaseMojo extends AbstractGlassfishMojo{
 		
 		String params = "stop-database --user " + user + " --passwordfile " + passwordfile;
 		
-		System.out.println("Glassfish home = " +glassfishHome);
-		System.out.println("Params =" + params);
+		getLog().info("Glassfish home = " +glassfishHome);
+		getLog().info("Params =" + params);
 		
 		launch("asadmin", params);
 	}
