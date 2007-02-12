@@ -36,7 +36,7 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 	 * @parameter expression="adminadmin"
 	 */
 	protected String passwordfile;
-	
+
 	/**
 	 * The password of admin in Glassfish server
 	 * 
@@ -48,7 +48,7 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 	 * @parameter expression="default"
 	 */
 	private File glassfishHomeDir;
-	
+
 	/**
 	 * The name of the file or directory to deploy or undeploy.
 	 * 
@@ -56,7 +56,7 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 	 * @required
 	 */
 	protected String fileName;
-	
+
 	/**
 	 * The name of the file or directory to deploy or undeploy.
 	 * 
@@ -64,7 +64,7 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 	 * @required
 	 */
 	protected String undeployName;
-		
+
 	/**
 	 * The name of the file or directory to deploy or undeploy.
 	 * 
@@ -72,7 +72,7 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 	 * @required
 	 */
 	protected String buildDir;
-	
+
 	private void checkConfig() throws MojoExecutionException,
 			MojoFailureException {
 		if (glassfishHome == null || glassfishHome.equals("ENV")) {
@@ -100,12 +100,12 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 			throws MojoExecutionException {
 
 		try {
-			
+
 			checkConfig();
-			
+
 			String osName = System.getProperty("os.name");
 			Runtime runtime = Runtime.getRuntime();
-			
+
 			Process p = null;
 			if (osName.startsWith("Windows")) {
 				String command[] = {
@@ -113,21 +113,22 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 						"/C",
 						"cd " + glassfishHomeDir.getAbsolutePath() + "\\bin & "
 								+ fName + ".bat " + " " + params };
-				    
-				p = runtime.exec(command);
-				
-				    InputStream is = p.getErrorStream();
-				    InputStreamReader isr = new InputStreamReader(is);
-				    BufferedReader br = new BufferedReader(isr);
-				    String line = "";
-				    String ln;
-				    while ((ln = br.readLine()) != null) {
-				    	 line += ln;
-				    	 getLog().info(ln);
 
-				    }
-				    if (line.contains("failed")) throw new MojoFailureException(line); 
-	
+				p = runtime.exec(command);
+
+				InputStream is = p.getErrorStream();
+				InputStreamReader isr = new InputStreamReader(is);
+				BufferedReader br = new BufferedReader(isr);
+				String line = "";
+				String ln;
+				while ((ln = br.readLine()) != null) {
+					line += ln;
+					getLog().info(ln);
+
+				}
+				if (line.contains("failed"))
+					throw new MojoFailureException(line);
+
 			} else {
 				String command[] = {
 						"sh",
@@ -135,17 +136,54 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 						"cd " + glassfishHomeDir.getAbsolutePath() + "/bin; ./"
 								+ fName + ".sh " + " " + params };
 				p = runtime.exec(command);
-				
-			    InputStream is = p.getErrorStream();
-			    InputStreamReader isr = new InputStreamReader(is);
-			    BufferedReader br = new BufferedReader(isr);
-			    String line = "";
-			    String ln;
-			    while ((ln = br.readLine()) != null) {
-			    	 line += ln;
-			    	 getLog().info(ln);
-			    }
-			    if (line.contains("failed")) throw new MojoFailureException(line);
+
+				InputStream is = p.getErrorStream();
+				InputStreamReader isr = new InputStreamReader(is);
+				BufferedReader br = new BufferedReader(isr);
+				String line = "";
+				String ln;
+				while ((ln = br.readLine()) != null) {
+					line += ln;
+					getLog().info(ln);
+				}
+				if (line.contains("failed"))
+					throw new MojoFailureException(line);
+			}
+
+		} catch (Exception e) {
+			throw new MojoExecutionException("Mojo error occurred: "
+					+ e.getMessage(), e);
+		}
+	}
+
+	protected void launchWithoutMessage(String fName, String params)
+			throws MojoExecutionException {
+
+		try {
+
+			checkConfig();
+
+			String osName = System.getProperty("os.name");
+			Runtime runtime = Runtime.getRuntime();
+
+			Process p = null;
+			if (osName.startsWith("Windows")) {
+				String command[] = {
+						"cmd.exe",
+						"/C",
+						"cd " + glassfishHomeDir.getAbsolutePath() + "\\bin & "
+								+ fName + ".bat " + " " + params };
+
+				p = runtime.exec(command);
+
+			} else {
+				String command[] = {
+						"sh",
+						"-c",
+						"cd " + glassfishHomeDir.getAbsolutePath() + "/bin; ./"
+								+ fName + ".sh " + " " + params };
+				p = runtime.exec(command);
+
 			}
 
 		} catch (Exception e) {

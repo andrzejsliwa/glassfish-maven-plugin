@@ -18,7 +18,7 @@ public class StopMojo extends AbstractGlassfishMojo{
 		getLog().info("Glassfish home = " +glassfishHome);
 		getLog().info("Params =" + params);
 		
-		launch("asadmin", params);
+		launchWithoutMessage("asadmin", params);
 	}
 
 	
