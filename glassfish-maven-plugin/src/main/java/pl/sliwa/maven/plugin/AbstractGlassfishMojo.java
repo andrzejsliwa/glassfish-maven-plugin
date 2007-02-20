@@ -12,8 +12,6 @@ import org.apache.maven.plugin.MojoFailureException;
 
 public abstract class AbstractGlassfishMojo extends AbstractMojo {
 
-	private static final String SERVER_DIR_NAME = "domains";
-
 	/**
 	 * The location to Glassfish Home. This is a required configuration
 	 * parameter (unless GLASSFISH_HOME is set).
