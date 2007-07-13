@@ -38,6 +38,20 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 	/**
 	 * The password of admin in Glassfish server
 	 * 
+	 * @parameter expression=""
+	 */
+	protected String host;
+	
+	/**
+	 * The password of admin in Glassfish server
+	 * 
+	 * @parameter expression=""
+	 */
+	protected String port;
+
+	/**
+	 * The password of admin in Glassfish server
+	 * 
 	 * @parameter expression="domain1"
 	 */
 	protected String domain;
@@ -76,7 +90,7 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 		if (glassfishHome == null || glassfishHome.equals("ENV")) {
 			if (SystemUtils.JAVA_VERSION_FLOAT < 1.5) {
 				throw new MojoExecutionException(
-						"Neither GLASSFISH_HOME nor the glassfishHome configuration parameter is set! Also, to save you the trouble, JBOSS_HOME cannot be read running a VM < 1.5, so set the jbossHome configuration parameter or use -D.");
+						"Neither GLASSFISH_HOME nor the glassfishHome configuration parameter is set! Also, to save you the trouble, JBOSS_HOME cannot be read running a VM < 1.5, so set the GlassFish Home configuration parameter or use -D.");
 			}
 			glassfishHome = System.getenv("GLASSFISH_HOME");
 		}
@@ -132,7 +146,7 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 						"sh",
 						"-c",
 						"cd " + glassfishHomeDir.getAbsolutePath() + "/bin; ./"
-								+ fName + ".sh " + " " + params };
+								+ fName + " " + params };
 				p = runtime.exec(command);
 
 				InputStream is = p.getErrorStream();
@@ -179,7 +193,7 @@ public abstract class AbstractGlassfishMojo extends AbstractMojo {
 						"sh",
 						"-c",
 						"cd " + glassfishHomeDir.getAbsolutePath() + "/bin; ./"
-								+ fName + ".sh " + " " + params };
+								+ fName + " " + params };
 				p = runtime.exec(command);
 
 			}
