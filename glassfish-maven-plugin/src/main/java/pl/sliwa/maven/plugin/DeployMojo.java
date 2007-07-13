@@ -17,7 +17,12 @@ public class DeployMojo extends AbstractGlassfishMojo {
 		// TODO Auto-generated method stub
 		
 		String fileNamePath = buildDir + File.separator + fileName;
-		String params = "deploy --user " + user + " --passwordfile " + passwordfile + " " + fileNamePath;
+		String params = "deploy --user " + user + " --passwordfile " + passwordfile;
+		
+		if (host != null && port != null)
+			params += " --host " + host + " --port " + port;
+		
+		params += " " + fileNamePath;
 		
 		getLog().info("Glassfish home = " +glassfishHome);
 		getLog().info("Params =" + params);

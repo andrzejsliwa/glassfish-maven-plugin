@@ -14,7 +14,12 @@ public class UndeployMojo extends AbstractGlassfishMojo {
 	public void execute() throws MojoExecutionException, MojoFailureException {
 		// TODO Auto-generated method stub
 		
-		String params = "undeploy --user " + user + " --passwordfile " + passwordfile + " " + undeployName;
+		String params = "undeploy --user " + user + " --passwordfile " + passwordfile;
+		
+		if (host != null && port != null)
+			params += " --host " + host + " --port " + port;
+		
+		params += " " + undeployName;
 		
 		getLog().info("Glassfish home = " +glassfishHome);
 		getLog().info("Params =" + params);
