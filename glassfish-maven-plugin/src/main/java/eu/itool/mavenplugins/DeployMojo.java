@@ -6,7 +6,16 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- *  Deploys a directory or file to Glassfish via asadmin
+ * 
+ * $License$
+ * 
+ * $Date$
+ * $Revision$
+ * $Author$
+ * $HeadURL$
+ * $Id$
+ * 
+ * Deploys a directory or file to Glassfish via asadmin
  *
  * @goal deploy
  * @description Maven 2 Glassfish plugin

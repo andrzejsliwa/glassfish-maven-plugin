@@ -4,7 +4,16 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- *  stop the Glassfish via asadmin
+ * 
+ * $License$
+ * 
+ * $Date$
+ * $Revision$
+ * $Author$
+ * $HeadURL$
+ * $Id$
+ * 
+ * Stop the Glassfish via asadmin
  *
  * @goal stop
  * @description Maven 2 Glassfish plugin

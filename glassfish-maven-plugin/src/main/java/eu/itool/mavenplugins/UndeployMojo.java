@@ -4,6 +4,15 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
+ * 
+ * $License$
+ * 
+ * $Date$
+ * $Revision$
+ * $Author$
+ * $HeadURL$
+ * $Id$
+ * 
  * Undeploy aplication from Glassfish
  *
  * @goal undeploy
