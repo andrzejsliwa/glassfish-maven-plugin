@@ -1,4 +1,4 @@
-package eu.itool.mavenplugins;
+package eu.itool.glassfishmavenplugin;
 
 import java.io.BufferedReader;
 import java.io.File;

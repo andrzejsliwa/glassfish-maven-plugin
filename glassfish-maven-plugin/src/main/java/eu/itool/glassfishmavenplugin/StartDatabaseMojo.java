@@ -1,4 +1,4 @@
-package eu.itool.mavenplugins;
+package eu.itool.glassfishmavenplugin;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;

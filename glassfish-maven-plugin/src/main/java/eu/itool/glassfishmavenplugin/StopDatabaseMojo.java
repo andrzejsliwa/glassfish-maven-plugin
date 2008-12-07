@@ -1,4 +1,4 @@
-package eu.itool.mavenplugins;
+package eu.itool.glassfishmavenplugin;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -13,27 +13,22 @@ import org.apache.maven.plugin.MojoFailureException;
  * $HeadURL$
  * $Id$
  * 
- * Undeploy aplication from Glassfish
+ *  Stop Database in Glassfish via asadmin
  *
- * @goal undeploy
+ * @goal stop-database
  * @description Maven 2 Glassfish plugin
  */
-public class UndeployMojo extends AbstractGlassfishMojo {
-	
-	
+public class StopDatabaseMojo extends AbstractGlassfishMojo{
+
 	public void execute() throws MojoExecutionException, MojoFailureException {
-		// TODO Auto-generated method stub
 		
-		String params = "undeploy --user " + user + " --passwordfile " + passwordfile;
-		
-		if (host != null && port != null)
-			params += " --host " + host + " --port " + port;
-		
-		params += " " + undeployName;
+		String params = "stop-database --user " + user + " --passwordfile " + passwordfile;
 		
 		getLog().info("Glassfish home = " +glassfishHome);
 		getLog().info("Params =" + params);
 		
 		launch("asadmin", params);
 	}
+
+	
 }

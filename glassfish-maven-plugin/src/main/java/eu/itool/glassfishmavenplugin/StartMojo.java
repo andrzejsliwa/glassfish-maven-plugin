@@ -1,4 +1,4 @@
-package eu.itool.mavenplugins;
+package eu.itool.glassfishmavenplugin;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -13,16 +13,16 @@ import org.apache.maven.plugin.MojoFailureException;
  * $HeadURL$
  * $Id$
  * 
- * Stop the Glassfish via asadmin
+ * Start the Glassfish via asadmin
  *
- * @goal stop
+ * @goal start
  * @description Maven 2 Glassfish plugin
  */
-public class StopMojo extends AbstractGlassfishMojo{
+public class StartMojo extends AbstractGlassfishMojo{
 
 	public void execute() throws MojoExecutionException, MojoFailureException {
 		
-		String params = "stop-domain " + domain;
+		String params = "start-domain " + domain;
 		
 		getLog().info("Glassfish home = " +glassfishHome);
 		getLog().info("Params =" + params);
@@ -30,5 +30,4 @@ public class StopMojo extends AbstractGlassfishMojo{
 		launchWithoutMessage("asadmin", params);
 	}
 
-	
 }
